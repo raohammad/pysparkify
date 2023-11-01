@@ -1,0 +1,22 @@
+source:
+  - type: CsvSource
+    config:
+      name: csv
+      path: "resources/data/input_data.csv"
+
+transformer:
+  - name: t1
+    type: SQLTransformer
+    source: 
+      - name: rssource
+        as: t1
+    statement: "SELECT city, AVG(age) AS avg_age FROM people GROUP BY city"
+    sink:
+      - name: csvsink
+        as: t2
+
+sink:
+  - type: CsvSink
+    config:
+      name: csvsink
+      path: "output/output_data.csv"
