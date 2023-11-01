@@ -5,7 +5,7 @@ This Spark package is designed to process data from various sources, perform tra
 
 The package is structured as follows:
 
-### Source and Sink Abstraction
+### Source, Sink and Transformer Abstraction
 
 The package defines abstract classes `Source`, `Sink` and `Transformer` to represent data sources, sinks and transformers. It also provides concrete classes, including `CsvSource`, `CsvSink` and `SQLTransformer`, which inherit from the abstract classes. This design allows you to add new source and sink types with ease.
 
