@@ -1,6 +1,11 @@
 # Introduction
 This Spark package is designed to process data from various sources, perform transformations, and write the results to different sinks. It follows the pipeline design pattern to provide a flexible and modular approach to data processing.
 
+## Install
+The package is published for use on pypi. Install directly from pypi
+
+    pip install pysparkify
+
 ## Design
 
 The package is structured as follows:
@@ -30,21 +35,6 @@ In your environment you should have spark and hadoop libraries added
     export SPARK_HOME=/path/to/your/spark
     export HADOOP_HOME=/path/to/your/hadoop (if applicable)
     export PATH=$SPARK_HOME/bin:$HADOOP_HOME/bin:$PATH
-
-
-## Testing
-
-Make sure that the required packages are installed in your python environemnt, listed in setup.py INSTALL_REQUIRES section. The package includes a testing framework using PyTest. Test cases are provided to ensure that each source, sink, and transformation works as expected. You can run the tests using the following command:
-
-```bash
-pytest test_app.py
-```
-
-or test run directly inside pysparkify folder
-
-```bash
-python ./src/app.py --config ./config/recipe.yml 
-```
 
 ## Deployment
 ... Environment specific documentation
