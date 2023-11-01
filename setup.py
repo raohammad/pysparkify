@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 # Package metadata
-NAME = 'spark-transformer'
+NAME = 'pysparkify'
 VERSION = '0.1'
 DESCRIPTION = 'This Spark package is designed to process data from various sources, perform transformations, and write the results to different sinks. It provides extension points for Source, Sink and Transformer and follows the pipeline design pattern to provide a flexible and modular approach to data processing.'
-URL = 'https://github.com/raohammad/spark-transformer'
+URL = 'https://github.com/raohammad/pysparkify'
 AUTHOR = 'Hammad Aslam KHAN'
 AUTHOR_EMAIL = 'raohammad@gmail.com'
 LICENSE = 'MIT'
-KEYWORDS = ['python', 'spark-transformer', 'etl', 'bigdata']
+KEYWORDS = ['python', 'pysparkify', 'etl', 'bigdata']
 
 # Read the long description from the README file
 with open('README.md', 'r', encoding='utf-8') as readme_file:

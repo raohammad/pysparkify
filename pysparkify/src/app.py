@@ -78,7 +78,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Create a Spark session
-    conf = pyspark.SparkConf().setAppName("spark-transformer") \
+    conf = pyspark.SparkConf().setAppName("pysparkify") \
         # .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:3.3.4") \
         # .set("spark.hadoop.fs.s3a.aws.credentials.provider", "com.amazonaws.auth.DefaultAWSCredentialsProviderChain")
 

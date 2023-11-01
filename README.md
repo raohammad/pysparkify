@@ -40,7 +40,7 @@ Make sure that the required packages are installed in your python environemnt, l
 pytest test_app.py
 ```
 
-or test run directly inside spark-transformer folder
+or test run directly inside pysparkify folder
 
 ```bash
 python ./src/app.py --config ./config/recipe.yml 
