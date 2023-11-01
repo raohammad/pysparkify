@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 # Package metadata
 NAME = 'pysparkify'
-VERSION = '0.2'
-DESCRIPTION = ''
+VERSION = '0.21'
+DESCRIPTION = 'Spark based pipeline design pattern implementation'
 URL = 'https://github.com/raohammad/pysparkify'
 AUTHOR = 'Hammad Aslam KHAN'
 AUTHOR_EMAIL = 'raohammad@gmail.com'
