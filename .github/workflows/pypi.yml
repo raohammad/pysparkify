@@ -16,13 +16,10 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: 3.12  # Adjust the Python version as needed
+        python-version: 3.12
 
     - name: Upgrade pip to install setupTools
-      run: pip install -U pip setuptools 
-
-    # - name: Install dependencies
-    #   run: pip install -r requirements.txt  # Adjust to your requirements file
+      run: pip install -U pip setuptools wheel
 
     - name: Build and publish to PyPI
       env:
