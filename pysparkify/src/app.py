@@ -4,16 +4,13 @@ from pyspark.sql import SparkSession
 import pyspark
 
 # import sources
-from source.source import Source
-from source.csv_source import CsvSource
+from source.source_factory import SourceFactory
 
 # import sinks
-from sink.sink import Sink
-from sink.csv_sink import CsvSink
+from sink.sink_factory import SinkFactory
 
 # import transformers
-from transformer.transformer import Transformer
-from transformer.sql_transformer import SQLTransformer
+from transformer.transformer_factory import TransformerFactory
 
 # Initialize lists to store sources, sinks, and transformers
 source_list = []
@@ -23,20 +20,17 @@ transformer_list = []
 def instantiate_source(config):
     # Instantiate a source based on the source type
     source_type = config['type']
-    source_class = globals()[source_type]
-    return source_class(config['config'])
+    return SourceFactory.build_source(source_type, config['config'])
 
 def instantiate_sink(config):
     # Instantiate a sink based on the sink type
     sink_type = config['type']
-    sink_class = globals()[sink_type]
-    return sink_class(config['config'])
+    return SinkFactory.build_sink(sink_type, config['config'])
 
 def instantiate_transformer(config):
     # Instantiate a transformer based on the transformer type
     transformer_type = config['type']
-    transformer_class = globals()[transformer_type]
-    return transformer_class(config['config'])
+    return TransformerFactory.build_transformer(transformer_type, config['config'])
 
 def process_data(config_path, spark):
     # Load configuration from the YAML file
