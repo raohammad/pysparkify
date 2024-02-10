@@ -30,11 +30,5 @@ The package reads data from the specified source, performs transformations based
 
 The project is built using python-3.12.0, spark-3.5.0 (and other dependencies in requirements.txt).
 
-In your environment you should have spark and hadoop libraries added
-
-    export SPARK_HOME=/path/to/your/spark
-    export HADOOP_HOME=/path/to/your/hadoop (if applicable)
-    export PATH=$SPARK_HOME/bin:$HADOOP_HOME/bin:$PATH
-
 ## Deployment
 ... Environment specific documentation
