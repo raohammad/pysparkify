@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 # Package metadata
 NAME = 'pysparkify'
-VERSION = '0.22'
+VERSION = '0.23'
 DESCRIPTION = 'Spark based ETL'
 URL = 'https://github.com/raohammad/pysparkify'
 AUTHOR = 'Hammad Aslam KHAN'
