@@ -34,4 +34,4 @@ The project is built using python-3.12.0, spark-3.5.0 (and other dependencies in
 
 1. Become a maintainer by requesting raohammad(at)gmail.com
 2. Open a PR
-3. One the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
+3. Once the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
