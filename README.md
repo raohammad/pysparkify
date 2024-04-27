@@ -56,7 +56,7 @@ The project is built using python-3.12.0, spark-3.5.0 (and other dependencies in
 3. Once the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
 
 
-# Pysparkify Library
+# Pysparkify Usage Example
 
 This library abstracts Spark data processing workflows. Define your workflow in `recipe.yml`. Reads data from CSV source and writes data to CSV Sink (paths mentioned in config) after data transformation (SQL mentioned in config too)
 
@@ -92,4 +92,16 @@ sink:
       name: sink2
       path: "output/avgage_data.csv"
       
+```
+
+The sample from csv source file used in above transformation is as below;
+
+```
+name,age,city
+Hayaan,10,Islamanad
+Jibraan,8,ShahAlam
+Allyan,3,Paris
+John,35,San Francisco
+Doe,22,Houston
+Dane,30,Seattle
 ```

@@ -15,7 +15,7 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setup(
     name='pysparkify',
-    version='0.24.1',
+    version='0.25.0',
     description='Spark based ETL',
     long_description=long_description,
     long_description_content_type='text/markdown',
