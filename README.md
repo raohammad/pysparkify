@@ -58,27 +58,38 @@ The project is built using python-3.12.0, spark-3.5.0 (and other dependencies in
 
 # Pysparkify Library
 
-This library abstracts Spark data processing workflows. Define your workflow in `recipe.yml`.
+This library abstracts Spark data processing workflows. Define your workflow in `recipe.yml`. Reads data from CSV source and writes data to CSV Sink (paths mentioned in config) after data transformation (SQL mentioned in config too)
 
-## Installation
-
-Install this package using:
-
-```bash
-pip install .
 ```
+source:
+  - type: CsvSource
+    config:
+      name: csv
+      path: "resources/data/input_data.csv"
 
-## Usage
+transformer:
+  - type: SQLTransformer
+    config:
+      name: transformer1
+      source: 
+        - name: csv
+          as_name: t1
+      statement: 
+        - sql: "SELECT * from t1 limit 2"
+          as_name: trx1
+          to_sink: sink1
+        - sql: "select AVG(age) from trx1"
+          as_name: trx2
+          to_sink: sink2
 
-Run the library as a command line tool:
-
-```bash
-pysparkify your_recipe.yml
-```
-
-Or use it in your Python scripts:
-
-```python
-from pysparkify import run
-run('your_recipe.yml')
+sink:
+  - type: CsvSink
+    config:
+      name: sink1
+      path: "output/output_data.csv"
+  - type: CsvSink
+    config:
+      name: sink2
+      path: "output/avgage_data.csv"
+      
 ```

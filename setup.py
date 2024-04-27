@@ -15,7 +15,7 @@ with open('README.md', 'r', encoding='utf-8') as readme_file:
 
 setup(
     name='pysparkify',
-    version='0.24.0',
+    version='0.24.1',
     description='Spark based ETL',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -31,7 +31,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'pysparkify=pysparkify.src.app:run'
+            'pysparkify=src.app:run'
         ]
     },
     classifiers=CLASSIFIERS,
