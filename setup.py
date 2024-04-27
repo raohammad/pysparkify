@@ -1,23 +1,5 @@
+# Setup script for the Pysparkify package
 from setuptools import setup, find_packages
-
-# Package metadata
-NAME = 'pysparkify'
-VERSION = '0.23'
-DESCRIPTION = 'Spark based ETL'
-URL = 'https://github.com/raohammad/pysparkify'
-AUTHOR = 'Hammad Aslam KHAN'
-AUTHOR_EMAIL = 'raohammad@gmail.com'
-LICENSE = 'MIT'
-KEYWORDS = ['python', 'pysparkify', 'etl', 'bigdata']
-
-# Read the long description from the README file
-with open('README.md', 'r', encoding='utf-8') as readme_file:
-    long_description = readme_file.read()
-
-# Define project dependencies
-INSTALL_REQUIRES = [
-    'pyyaml==6.0.1', 'pyspark==3.5.0'
-]
 
 # Classifiers for your package
 CLASSIFIERS = [
@@ -27,19 +9,30 @@ CLASSIFIERS = [
     'Programming Language :: Python'
 ]
 
-# Define the setup configuration
+# Read the long description from the README file
+with open('README.md', 'r', encoding='utf-8') as readme_file:
+    long_description = readme_file.read()
+
 setup(
-    name=NAME,
-    version=VERSION,
-    description=DESCRIPTION,
+    name='pysparkify',
+    version='0.24.0',
+    description='Spark based ETL',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url=URL,
-    author=AUTHOR,
-    author_email=AUTHOR_EMAIL,
-    license=LICENSE,
-    keywords=KEYWORDS,
+    author='Hammad Aslam KHAN',
+    author_email='raohammad@gmail.com',
+    license='MIT',
+    keywords=['python', 'pysparkify', 'etl', 'bigdata'],
+    url='https://github.com/raohammad/pysparkify',
     packages=find_packages(),
-    install_requires=INSTALL_REQUIRES,
+    install_requires=[
+        'pyspark>=3.0.0',
+        'pyyaml>=5.3'
+    ],
+    entry_points={
+        'console_scripts': [
+            'pysparkify=pysparkify.src.app:run'
+        ]
+    },
     classifiers=CLASSIFIERS,
 )

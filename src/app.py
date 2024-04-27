@@ -2,6 +2,8 @@ import argparse
 import yaml
 from pyspark.sql import SparkSession
 import pyspark
+from .context_manager import get_spark_session
+from configparser import ConfigParser
 
 # import sources
 from source.source_factory import SourceFactory
@@ -66,19 +68,37 @@ def process_data(config_path, spark):
     for transformer in transformer_list:
         transformer.transform(spark, source_data, sink_list)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process data using PySpark")
-    parser.add_argument("--config", required=True, help="Path to the configuration YAML file (recipe.yml)")
-    args = parser.parse_args()
+# if __name__ == "__main__":
+#     parser = argparse.ArgumentParser(description="Process data using PySpark")
+#     parser.add_argument("--config", required=True, help="Path to the configuration YAML file (recipe.yml)")
+#     args = parser.parse_args()
     
-    # Create a Spark session
-    conf = pyspark.SparkConf().setAppName("pysparkify") \
-        # .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:3.3.4") \
-        # .set("spark.hadoop.fs.s3a.aws.credentials.provider", "com.amazonaws.auth.DefaultAWSCredentialsProviderChain")
+#     # Create a Spark session
+#     conf = pyspark.SparkConf().setAppName("pysparkify") \
+#         # .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:3.3.4") \
+#         # .set("spark.hadoop.fs.s3a.aws.credentials.provider", "com.amazonaws.auth.DefaultAWSCredentialsProviderChain")
 
-    spark = SparkSession.builder.config(conf=conf).getOrCreate()
+#     spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-    process_data(args.config, spark)
+#     process_data(args.config, spark)
 
-    # Stop the Spark session when done
+#     # Stop the Spark session when done
+#     spark.stop()
+
+def run(recipe_path):
+    # Load Spark configurations from file
+    config = ConfigParser()
+    config.read('config/spark_config.conf')
+
+    # Prepare the Spark config dictionary
+    spark_config = {key: value for key, value in config.items('SPARK')}
+
+    # Get Spark session
+    spark = get_spark_session(app_name=config.get('SPARK', 'spark.app.name'), config=spark_config)
+
+    process_data(recipe_path, spark)
+
+    # Continue with your application logic, such as loading data, performing transformations, and writing outputs
+    # Example: data = spark.read.csv("path/to/your/data.csv")
+    # Remember to stop the Spark session when done
     spark.stop()
