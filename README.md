@@ -73,7 +73,7 @@ sink:
 ```
 
 
-## Usage
+### Usage
 
 This library can be run as a command line tool:
 
@@ -110,14 +110,8 @@ Transformations are performed by `SQLTransformer` using Spark SQL queries define
 The package reads data from the specified source, performs transformations based on the configured SQL queries, and then writes the results to the specified sink. You can configure multiple sources and sinks within the same package.
 
 
-
-
-# Pysparkify Usage Example
-
-
-
 ## How to Contribute
 
-1. Become a maintainer by requesting raohammad(at)gmail.com
+1. There are plenty of ways, in which implementation of new Sources and Sinks top the list
 2. Open a PR
-3. Once the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
+3. PR is reviewed and approved, included `github actions` will deploy the version directly to pypi repository
