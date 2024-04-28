@@ -1,7 +1,7 @@
 # Introduction
 This Spark package is designed to process data from various sources, perform transformations, and write the results to different sinks. It follows the pipeline design pattern to provide a flexible and modular approach to data processing.
 
-## Installation
+## Setup
 
 Install this package using:
 
@@ -9,7 +9,7 @@ Install this package using:
 pip install pysparkify
 ```
 
-Create sparkc_config.conf file of this format to enter all configurations related to spark in `config/spark_config.conf`
+Create spark_config.conf file of this format to enter all configurations related to spark in `config/spark_config.conf`
 
 ```bash
 [SPARK]
@@ -19,56 +19,24 @@ spark.executor.memory=4g
 spark.driver.memory=2g
 ```
 
-## Usage
+This library abstracts Spark data processing workflows. For example you would like to;
 
-Run the library as a command line tool:
+- take first two rows of the data, save it as a separate output
+- take an average and save it as a separate output
 
-```bash
-pysparkify your_recipe.yml
+with below sample data
+
+```
+name,age,city
+Hayaan,10,Islamanad
+Jibraan,8,ShahAlam
+Allyan,3,Paris
+John,35,San Francisco
+Doe,22,Houston
+Dane,30,Seattle
 ```
 
-Or use it in your Python scripts:
-
-```python
-from pysparkify.lib.app import run
-run('your_recipe.yml')
-```
-
-
-## Design
-
-The package is structured as follows:
-
-### Source, Sink and Transformer Abstraction
-
-The package defines abstract classes `Source`, `Sink` and `Transformer` to represent data sources, sinks and transformers. It also provides concrete classes, including `CsvSource`, `CsvSink` and `SQLTransformer`, which inherit from the abstract classes. This design allows you to add new source and sink types with ease.
-
-### Configuration via `recipe.yml`
-
-The package reads its configuration from a `recipe.yml` file. This YAML file specifies the source, sink, and transformation configurations. It allows you to define different data sources, sinks, and transformation queries.
-
-### Transformation Queries
-
-Transformations are performed by `SQLTransformer` using Spark SQL queries defined in the configuration. These queries are executed on the data from the source before writing it to the sink. New transformers can be implemented by extending `Transformer` abstract class that can take spark dataframes from sources to process and send dataframes to sinks to save.
-
-### Pipeline Execution
-
-The package reads data from the specified source, performs transformations based on the configured SQL queries, and then writes the results to the specified sink. You can configure multiple sources and sinks within the same package.
-
-## Setup
-
-The project is built using python-3.12.0, spark-3.5.0 (and other dependencies in requirements.txt).
-
-## How to Contribute
-
-1. Become a maintainer by requesting raohammad(at)gmail.com
-2. Open a PR
-3. Once the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
-
-
-# Pysparkify Usage Example
-
-This library abstracts Spark data processing workflows. Define your workflow in `recipe.yml`. Reads data from CSV source and writes data to CSV Sink (paths mentioned in config) after data transformation (SQL mentioned in config too)
+Your recipe reads the csv data as source, transforms the data and optionally save the output of each transformation to sink. Below would be the recipe.yml for this operation.
 
 ```
 source:
@@ -104,14 +72,52 @@ sink:
       
 ```
 
-The sample from csv source file used in above transformation is as below;
 
+## Usage
+
+This library can be run as a command line tool:
+
+```bash
+pysparkify your_recipe.yml
 ```
-name,age,city
-Hayaan,10,Islamanad
-Jibraan,8,ShahAlam
-Allyan,3,Paris
-John,35,San Francisco
-Doe,22,Houston
-Dane,30,Seattle
+
+Or use it in your Python scripts:
+
+```python
+from pysparkify.lib.app import run
+run('your_recipe.yml')
 ```
+
+
+## Design
+
+The package is structured as follows:
+
+### Source, Sink and Transformer Abstraction
+
+The package defines abstract classes `Source`, `Sink` and `Transformer` to represent data sources, sinks and transformers. It also provides concrete classes, including `CsvSource`, `CsvSink` and `SQLTransformer`, which inherit from the abstract classes. This design allows you to add new source and sink types with ease.
+
+### Configuration via `recipe.yml`
+
+The package reads its configuration from a `recipe.yml` file. This YAML file specifies the source, sink, and transformation configurations. It allows you to define different data sources, sinks, and transformation queries.
+
+### Transformation Queries
+
+Transformations are performed by `SQLTransformer` using Spark SQL queries defined in the configuration. These queries are executed on the data from the source before writing it to the sink. New transformers can be implemented by extending `Transformer` abstract class that can take spark dataframes from sources to process and send dataframes to sinks to save.
+
+### Pipeline Execution
+
+The package reads data from the specified source, performs transformations based on the configured SQL queries, and then writes the results to the specified sink. You can configure multiple sources and sinks within the same package.
+
+
+
+
+# Pysparkify Usage Example
+
+
+
+## How to Contribute
+
+1. Become a maintainer by requesting raohammad(at)gmail.com
+2. Open a PR
+3. Once the PR is reviewed and approved, included github actions will deploy the version directly to pypi repository
