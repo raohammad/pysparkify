@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: pysparkify
+Version: 0.25.0
+Summary: Spark based ETL
+Home-page: https://github.com/raohammad/pysparkify
+Author: Hammad Aslam KHAN
+Author-email: raohammad@gmail.com
+License: MIT
+Keywords: python,pysparkify,etl,bigdata
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Description-Content-Type: text/markdown
+Requires-Dist: pyspark>=3.0.0
+Requires-Dist: pyyaml>=5.3
+
 # Introduction
 This Spark package is designed to process data from various sources, perform transformations, and write the results to different sinks. It follows the pipeline design pattern to provide a flexible and modular approach to data processing.
 

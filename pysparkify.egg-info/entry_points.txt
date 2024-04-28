@@ -1,0 +1,2 @@
+[console_scripts]
+pysparkify = lib.app:main

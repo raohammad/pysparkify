@@ -6,13 +6,13 @@ from .context_manager import get_spark_session
 from configparser import ConfigParser
 
 # import sources
-from source.source_factory import SourceFactory
+from lib.source.source_factory import SourceFactory
 
 # import sinks
-from sink.sink_factory import SinkFactory
+from lib.sink.sink_factory import SinkFactory
 
 # import transformers
-from transformer.transformer_factory import TransformerFactory
+from lib.transformer.transformer_factory import TransformerFactory
 
 # Initialize lists to store sources, sinks, and transformers
 source_list = []
@@ -85,6 +85,12 @@ def process_data(config_path, spark):
 #     # Stop the Spark session when done
 #     spark.stop()
 
+# def run(recipe_path):
+#     # Existing code to run the application using the provided recipe_path
+#     print(f"Running with recipe: {recipe_path}")
+#     # Example Spark session usage
+#     spark = get_spark_session()
+
 def run(recipe_path):
     # Load Spark configurations from file
     config = ConfigParser()
@@ -102,3 +108,12 @@ def run(recipe_path):
     # Example: data = spark.read.csv("path/to/your/data.csv")
     # Remember to stop the Spark session when done
     spark.stop()
+
+def main():
+    parser = argparse.ArgumentParser(description="Run Pysparkify application")
+    parser.add_argument('recipe_path', type=str, help='Path to the recipe YAML file')
+    args = parser.parse_args()
+    run(args.recipe_path)
+
+if __name__ == "__main__":
+    main()
