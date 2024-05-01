@@ -3,6 +3,19 @@ source:
     config:
       name: csv
       path: "resources/data/input_data.csv"
+  # - type: S3Source
+  #   config:
+  #     name: s3_input
+  #     bucket_name: my-s3-bucket
+  #     file_type: csv
+  #     file_path: path/on/s3/bucket
+  # - type: RedshiftSource
+  #   config:
+  #     name: redshift_input
+  #     infer_schema: False
+  #     connection: !include ./config/connection/redshift_connection.yml
+  #     statement: "select * from schema.my_table where column1_name=''"
+  #     schema: !include ./config/db_schema/my_table.yml
 
 transformer:
   - type: SQLTransformer
@@ -28,4 +41,12 @@ sink:
     config:
       name: sink2
       path: "output/avgage_data.csv"
-      
+  # - type: S3Sink
+  #   config:
+  #     name: s3_output
+  #     bucket_name: my-s3-bucket
+  #     file_path: path/on/s3/bucket
+  # - type: RedshiftSink
+  #   config:
+  #     connection: !include ./config/connection/redshift_connection.yml
+  #     statement: "select * from output_table limit 10"

@@ -78,14 +78,19 @@ sink:
 This library can be run as a command line tool:
 
 ```bash
-pysparkify your_recipe.yml
+pysparkify 'path/to/recipe.yml'
 ```
 
 Or use it in your Python scripts:
 
 ```python
+
 from pysparkify.lib.app import run
-run('your_recipe.yml')
+run('path/to/recipe.yml') #this expects spark_config.conf file on path `config/spark_config.conf` path
+
+# or with optional spark configuration file
+run('path/to/recipe.yml', 'path/to/custom_spark_config.conf')
+
 ```
 
 

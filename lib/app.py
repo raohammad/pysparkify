@@ -68,33 +68,10 @@ def process_data(config_path, spark):
     for transformer in transformer_list:
         transformer.transform(spark, source_data, sink_list)
 
-# if __name__ == "__main__":
-#     parser = argparse.ArgumentParser(description="Process data using PySpark")
-#     parser.add_argument("--config", required=True, help="Path to the configuration YAML file (recipe.yml)")
-#     args = parser.parse_args()
-    
-#     # Create a Spark session
-#     conf = pyspark.SparkConf().setAppName("pysparkify") \
-#         # .set("spark.jars.packages", "org.apache.hadoop:hadoop-aws:3.3.4") \
-#         # .set("spark.hadoop.fs.s3a.aws.credentials.provider", "com.amazonaws.auth.DefaultAWSCredentialsProviderChain")
-
-#     spark = SparkSession.builder.config(conf=conf).getOrCreate()
-
-#     process_data(args.config, spark)
-
-#     # Stop the Spark session when done
-#     spark.stop()
-
-# def run(recipe_path):
-#     # Existing code to run the application using the provided recipe_path
-#     print(f"Running with recipe: {recipe_path}")
-#     # Example Spark session usage
-#     spark = get_spark_session()
-
-def run(recipe_path):
+def run(recipe_path, spark_config_path='config/spark_config.conf'):
     # Load Spark configurations from file
     config = ConfigParser()
-    config.read('config/spark_config.conf')
+    config.read(spark_config_path)  # Use the provided or default path
 
     # Prepare the Spark config dictionary
     spark_config = {key: value for key, value in config.items('SPARK')}
@@ -104,16 +81,15 @@ def run(recipe_path):
 
     process_data(recipe_path, spark)
 
-    # Continue with your application logic, such as loading data, performing transformations, and writing outputs
-    # Example: data = spark.read.csv("path/to/your/data.csv")
     # Remember to stop the Spark session when done
     spark.stop()
 
 def main():
     parser = argparse.ArgumentParser(description="Run Pysparkify application")
     parser.add_argument('recipe_path', type=str, help='Path to the recipe YAML file')
+    parser.add_argument('--spark_config', type=str, help='Path to the Spark configuration file', default='config/spark_config.conf')
     args = parser.parse_args()
-    run(args.recipe_path)
+    run(args.recipe_path, args.spark_config)
 
 if __name__ == "__main__":
     main()

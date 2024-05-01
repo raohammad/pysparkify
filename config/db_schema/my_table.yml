@@ -1,0 +1,9 @@
+- name: id
+  type: number
+  nullable: false
+- name: column1_name
+  type: string
+  nullable: true
+- name: column2_name
+  type: integer
+  nullable: true
