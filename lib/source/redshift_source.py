@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 import psycopg2
-from lib.source.source import Source
+from .source import Source
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, LongType, TimestampType, BooleanType
 import os
 

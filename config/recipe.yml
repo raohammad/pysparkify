@@ -2,7 +2,7 @@ source:
   - type: CsvSource
     config:
       name: csv
-      path: "resources/data/input_data.csv"
+      path: "pysparkify/resources/data/input_data.csv"
   # - type: S3Source
   #   config:
   #     name: s3_input
@@ -36,11 +36,11 @@ sink:
   - type: CsvSink
     config:
       name: sink1
-      path: "output/output_data.csv"
+      path: "pysparkify/output/output_data.csv"
   - type: CsvSink
     config:
       name: sink2
-      path: "output/avgage_data.csv"
+      path: "pysparkify/output/avgage_data.csv"
   # - type: S3Sink
   #   config:
   #     name: s3_output

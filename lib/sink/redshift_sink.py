@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from lib.sink.sink import Sink
+from .sink import Sink
 from pyspark.sql import DataFrame
 import os
 

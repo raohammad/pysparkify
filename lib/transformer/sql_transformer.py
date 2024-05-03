@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from lib.transformer.transformer import Transformer
+from .transformer import Transformer
 
 class SQLTransformer(Transformer):
     def __init__(self, config):

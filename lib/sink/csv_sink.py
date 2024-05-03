@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from lib.sink.sink import Sink
+from .sink import Sink
 
 class CsvSink(Sink):
     def __init__(self, config):

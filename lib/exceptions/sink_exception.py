@@ -1,4 +1,0 @@
-class SinkException(Exception):
-    pass
-
-

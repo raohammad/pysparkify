@@ -6,13 +6,13 @@ from .context_manager import get_spark_session
 from configparser import ConfigParser
 
 # import sources
-from lib.source.source_factory import SourceFactory
+from pysparkify.lib.source.source_factory import SourceFactory
 
 # import sinks
-from lib.sink.sink_factory import SinkFactory
+from pysparkify.lib.sink.sink_factory import SinkFactory
 
 # import transformers
-from lib.transformer.transformer_factory import TransformerFactory
+from pysparkify.lib.transformer.transformer_factory import TransformerFactory
 
 # Initialize lists to store sources, sinks, and transformers
 source_list = []

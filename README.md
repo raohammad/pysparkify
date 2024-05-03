@@ -78,7 +78,7 @@ sink:
 This library can be run as a command line tool:
 
 ```bash
-pysparkify 'path/to/recipe.yml'
+pysparkify 'path/to/recipe.yml' --spark-config 'path/to/spark-config.conf'
 ```
 
 Or use it in your Python scripts:

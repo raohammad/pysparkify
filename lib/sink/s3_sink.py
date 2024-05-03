@@ -1,4 +1,4 @@
-from lib.sink.sink import Sink
+from .sink import Sink
 
 class S3Sink(Sink):
     def __init__(self, config):

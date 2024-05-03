@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from lib.source.source import Source
+from .source import Source
 
 class CsvSource(Source):
     def __init__(self, config):
