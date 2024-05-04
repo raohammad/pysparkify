@@ -1,1 +1,1 @@
-from .lib.app import run
+from .lib.app import run, main
