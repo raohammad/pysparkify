@@ -12,7 +12,7 @@ class SinkFactory():
         if sink_type == "CsvSink": 
             return CsvSink(config)
         elif sink_type == "S3Sink":
-            return RedshiftSink(config)
+            return S3Sink(config)
         elif sink_type == "RedshiftSink":
             return RedshiftSink(config)
         #TODO: Add more sinks to factory
