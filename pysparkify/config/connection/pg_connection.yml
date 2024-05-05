@@ -1,0 +1,6 @@
+# Write hand side are environment variables storing db connection credentials
+host: PG_HOST
+port: PG_PORT
+dbname: PG_DBNAME
+dbuser: PG_DBUSER
+dbpassword: PG_DBPASSWORD

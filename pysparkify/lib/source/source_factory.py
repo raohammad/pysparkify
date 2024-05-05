@@ -3,7 +3,7 @@ from .source import Source
 from .csv_source import CsvSource
 from .s3_source import S3Source
 from .redshift_source import RedshiftSource
-
+from .postgres_source import PostgresSource
 
 class SourceFactory():
     
@@ -15,6 +15,8 @@ class SourceFactory():
             return S3Source(config)
         elif source_type == "RedshiftSource":
             return RedshiftSource(config)
+        elif source_type == "PostgresSource":
+            return PostgresSource(config)
         #TODO: Add more sinks to factory
         print(f"Unsupported source {source_type}")
         return -1

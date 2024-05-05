@@ -1,5 +1,12 @@
 # Introduction
-This Spark package is designed to process data from various sources, perform transformations, and write the results to different sinks. It follows the pipeline design pattern to provide a flexible and modular approach to data processing.
+The pysparkify library facilitates data processing from diverse sources, applying transformations, and writing outcomes to various destinations. It employs the pipeline design pattern, offering a flexible and modular approach to big data data processing.
+
+Supported sources and sinks include:
+
+- Amazon S3
+- Amazon Redshift
+- Postgres DB
+- Local Files (for local spark)
 
 ## Setup
 
@@ -9,7 +16,7 @@ Install this package using:
 pip install pysparkify
 ```
 
-Create spark_config.conf file of this format to enter all configurations related to spark in `config/spark_config.conf`
+Create a spark_config.conf file following this format to input all Spark-related configurations. For instance:
 
 ```bash
 [SPARK]
@@ -19,12 +26,12 @@ spark.executor.memory=4g
 spark.driver.memory=2g
 ```
 
-This library abstracts Spark data processing workflows. For example you would like to;
+The library abstracts Spark data processing workflows. For example, you can:
 
-- take first two rows of the data, save it as a separate output
-- take an average and save it as a separate output
+- Extract the first two rows of data and save them as a separate output.
+- Compute an average and save it as another output.
 
-with below sample data
+Here's a sample data set:
 
 ```
 name,age,city
@@ -36,7 +43,7 @@ Doe,22,Houston
 Dane,30,Seattle
 ```
 
-Your recipe reads the csv data as source, transforms the data and optionally save the output of each transformation to sink. Below would be the recipe.yml for this operation.
+Your recipe reads the CSV data as the source, transforms it, and optionally saves the output of each transformation to a sink. Below is a sample recipe.yml for this operation:
 
 ```
 source:
@@ -75,7 +82,7 @@ sink:
 
 ### Usage
 
-This library can be run as a command line tool:
+You can run this library as a command-line tool:
 
 ```bash
 pysparkify 'path/to/recipe.yml' --spark-config 'path/to/spark-config.conf'
@@ -85,14 +92,13 @@ Or use it in your Python scripts:
 
 ```python
 
-from pysparkify.lib.app import run
-run('path/to/recipe.yml') #this expects spark_config.conf file on path `config/spark_config.conf` path
+import pysparkify
+pysparkify.run('path/to/recipe.yml') #this expects spark_config.conf file on path `config/spark_config.conf` path
 
 # or with optional spark configuration file
-run('path/to/recipe.yml', 'path/to/custom_spark_config.conf')
+pysparkify.run('path/to/recipe.yml', 'path/to/custom_spark_config.conf')
 
 ```
-
 
 ## Design
 

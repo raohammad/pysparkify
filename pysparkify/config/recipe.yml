@@ -2,19 +2,26 @@ source:
   - type: CsvSource
     config:
       name: csv
-      path: "pysparkify/resources/data/input_data.csv"
+      path: "path/to/csv/input_data.csv"
   # - type: S3Source
   #   config:
   #     name: s3_input
   #     bucket_name: my-s3-bucket
   #     file_type: csv
   #     file_path: path/on/s3/bucket
+  # - type: PostgresSource
+  #   config:
+  #     name: iso_codes
+  #     infer_schema: False
+  #     connection: !include ./config/connection/pg_connection.yml
+  #     statement: "SELECT * FROM my_schema.my_table"
+  #     schema: !include ./config/db_schema/my_table.yml
   # - type: RedshiftSource
   #   config:
   #     name: redshift_input
   #     infer_schema: False
   #     connection: !include ./config/connection/redshift_connection.yml
-  #     statement: "select * from schema.my_table where column1_name=''"
+  #     statement: "SELECT * FROM my_schema.my_table"
   #     schema: !include ./config/db_schema/my_table.yml
 
 transformer:
@@ -25,28 +32,23 @@ transformer:
         - name: csv
           as_name: t1
       statement: 
-        - sql: "SELECT * from t1 limit 2"
-          as_name: trx1
+        - sql: "select AVG(age) from t1"
+          as_name: t2
           to_sink: sink1
-        - sql: "select AVG(age) from trx1"
-          as_name: trx2
-          to_sink: sink2
 
 sink:
   - type: CsvSink
     config:
       name: sink1
       path: "pysparkify/output/output_data.csv"
-  - type: CsvSink
-    config:
-      name: sink2
-      path: "pysparkify/output/avgage_data.csv"
   # - type: S3Sink
   #   config:
   #     name: s3_output
   #     bucket_name: my-s3-bucket
   #     file_path: path/on/s3/bucket
-  # - type: RedshiftSink
+  # - type: PostgresSink
   #   config:
-  #     connection: !include ./config/connection/redshift_connection.yml
-  #     statement: "select * from output_table limit 10"
+  #     name: my_postgres_sink
+  #     connection: !include ./config/pg_connection.yml
+  #     dbtable: google_political_ads.iso_country_test
+  #     mode: overwrite

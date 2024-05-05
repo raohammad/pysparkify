@@ -19,6 +19,16 @@ source_list = []
 sink_list = []
 transformer_list = []
 
+# below code adds ability in yaml to read included files (in recipe)
+def include_constructor(loader, node):
+    # Get the file path from the node and load the content from the file
+    filename = loader.construct_scalar(node)
+    with open(filename, 'r') as file:
+        return yaml.safe_load(file)
+
+# Add the custom constructor to the PyYAML SafeLoader
+yaml.SafeLoader.add_constructor('!include', include_constructor)
+
 def instantiate_source(config):
     # Instantiate a source based on the source type
     source_type = config['type']

@@ -1,9 +1,33 @@
-- name: id
-  type: number
+- name: alpha-2
+  type: string
   nullable: false
-- name: column1_name
+- name: alpha-3
   type: string
   nullable: true
-- name: column2_name
-  type: integer
+- name: country_code
+  type: string
+  nullable: true
+- name: intermediate_region
+  type: string
+  nullable: true
+- name: intermediate_region_code
+  type: string
+  nullable: true
+- name: iso_3166-2
+  type: string
+  nullable: true
+- name: name
+  type: string
+  nullable: true
+- name: region
+  type: string
+  nullable: true
+- name: region-code
+  type: number
+  nullable: true
+- name: sub-region
+  type: string
+  nullable: true
+- name: sub-region-code
+  type: number
   nullable: true
