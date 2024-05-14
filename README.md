@@ -126,3 +126,9 @@ The package reads data from the specified source, performs transformations based
 1. There are plenty of ways, in which implementation of new Sources and Sinks top the list
 2. Open a PR
 3. PR is reviewed and approved, included `github actions` will deploy the version directly to pypi repository
+
+
+## Sponsors
+
+The project is being sponsord by [Dataflick](https://www.dataflick.dev).
+If you are considering using this library in your projects, [please consider becoming a sponsor for continued support](mailto:raohammad@gmail.com?subject=Become%20A%20Sponsor).
