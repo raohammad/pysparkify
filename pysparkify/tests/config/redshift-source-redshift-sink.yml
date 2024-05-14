@@ -1,55 +1,28 @@
 source:
   - type: RedshiftSource
     config:
-      name: rssource
-      host: ${REDSHIFT_HOST}
-      port: ${REDSHIFT_PORT}
-      dbname: ${REDSHIFT_DBNAME}
-      dbuser: ${REDSHIFT_DBUSER}
-      dbpassword: ${REDSHIFT_DBPASSWORD}
-      statement: "select * from frd_dev.rec_molecules limit 10"
-      schema:
-        - name: molecules
-          type: string
-          nullable: true
-        - name: molecules_recode
-          type: string
-          nullable: true
-        - name: is_checked
-          type: boolean
-          nullable: true
-        - name: data_upload
-          type: string
-          nullable: true
-        - name: status_update
-          type: string
-          nullable: true
-        - name: priority
-          type: string
-          nullable: true
+      name: iso_codes
+      infer_schema: False
+      connection: !include ./config/pg_connection.yml
+      statement: "SELECT * FROM google_political_ads.iso_country"
+      schema: !include ./config/db_schema/iso_country.yml
 
 transformer:
   - type: SQLTransformer
     config:
       name: transformer1
       source: 
-        - name: rssource
+        - name: iso_codes
           as_name: t1
       statement: 
-        - sql: "SELECT * FROM t1 GROUP BY city"
+        - sql: "SELECT * FROM t1 limit 10"
           as_name: trx1
-          # to_sink: csvsink
-        - sql: "SELECT city FROM trx1 where avg_age>30"
-          as_name: trx2
-          to_sink: csvsink
+          to_sink: output
 
 sink:
   - type: RedshiftSink
     config:
-      name: rssource
-      host: ${REDSHIFT_HOST}
-      port: ${REDSHIFT_PORT}
-      dbname: ${REDSHIFT_DBNAME}
-      dbuser: ${REDSHIFT_DBUSER}
-      dbpassword: ${REDSHIFT_DBPASSWORD}
-      statement: "select * from frd_dev.rec_molecules limit 10"
+      name: output
+      connection: !include ./config/pg_connection.yml
+      dbtable: public.creative_stats
+      mode: overwrite

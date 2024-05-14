@@ -50,5 +50,5 @@ sink:
   #   config:
   #     name: my_postgres_sink
   #     connection: !include ./config/pg_connection.yml
-  #     dbtable: google_political_ads.iso_country_test
+  #     dbtable: schema.table
   #     mode: overwrite

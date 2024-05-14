@@ -2,8 +2,8 @@ source:
   - type: S3Source
     config:
       name: s3_input
-      bucket_name: azfrd-test
-      file_path: NMS/Cleaning/Consolidation/test
+      bucket_name: my-bucket-name
+      file_path: path/to/input_files
 
 transformer:
   - type: SQLTransformer
@@ -16,13 +16,10 @@ transformer:
         - sql: "SELECT * from t1 limit 10"
           as_name: trx1
           to_sink: s3_output
-        # - sql: "SELECT city FROM trx1 where avg_age>30"
-        #   as_name: trx2
-        #   to_sink: csvsink
 
 sink:
   - type: S3Sink
     config:
       name: s3_output
       bucket_name: azfrd-test
-      file_path: NMS/Cleaning/Consolidation/test/output_data.txt
+      file_path: path/to/output_files
